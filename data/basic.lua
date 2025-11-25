@@ -2,7 +2,14 @@ local _, ns = ...
 local Player = ns.wow.Player
 local GetSpecializationRoleByID = GetSpecializationRoleByID -- luacheck: globals GetSpecializationRoleByID
 
----@type Broker
+---@class Character
+---@field basic BasicBroker
+
+---@class BasicBroker: Broker
+---@field level integer
+---@field specialization {primary:string?, active:string, role:string, key:string}?
+---@field professions {primary:any?, secondary:any?, fishing:any?, cooking:any?}?
+---@field remix { unbound: integer }
 ns.Basic = ns:RegisterBroker("basic")
 
 ns.Basic.fields = {
@@ -19,7 +26,8 @@ ns.Basic.fields = {
       return {
         primary = primarySpec,
         active = activeSpec,
-        role = GetSpecializationRoleByID(pid or aid)
+        role = GetSpecializationRoleByID(pid or aid),
+        key = (pid or aid) and gsub(primarySpec or activeSpec, " ", ""),
       }
     end,
   },

@@ -1,7 +1,7 @@
 local _, ns = ...
 local Set = ns.lua.sets.Set
 local Values = ns.lua.sets.values
-local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted -- luacheck: globals C_QuestLog
+local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 
 local WWIRepQuests = {
   Dornogal   = 82362,
