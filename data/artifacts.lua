@@ -14,29 +14,33 @@ local data = {}
 ---@field artifacts ArtifactBroker
 
 ---@class ArtifactBroker: Broker
----@field hidden { [string]: boolean }
----@field hiddenColors { wq: Progress, dungeon: Progress, kills: Progress }
 ns.Artifacts = ns:RegisterBroker("artifacts")
 
 ns.Artifacts.fields = {
+  ---@class ArtifactBroker
+  ---@field hidden { SpecializationKey: boolean }
   hidden = {
     get = function(_, toon)
       return maps.map(data[toon.classKey], function(v)
         return IsQuestFlaggedCompleted(v.hidden)
       end)
     end,
+    event = "QUEST_TURNED_IN",
   },
+
+  ---@class ArtifactBroker
+  ---@field hiddenColors { wq: Progress, dungeon: Progress, kills: Progress }
   hiddenColors = {
-    ids = {wq = 11152, dungeon = 11153, kills = 11154},
+    ids = {wq = 11153, dungeon = 11152, kills = 11154},
     get = function(self)
       return maps.map(self.ids, function(v)
         local _, _, _, a, g = GetAchievementCriteriaInfo(v, 1)
         return { goal = g, progress = a }
       end)
-    end
+    end,
+    event = "QUEST_TURNED_IN",
   },
 }
-
 
 ns:registerCommand("dump", "artifact", function()
   local t = ns.currentData

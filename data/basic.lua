@@ -7,7 +7,7 @@ local GetSpecializationRoleByID = GetSpecializationRoleByID -- luacheck: globals
 
 ---@class BasicBroker: Broker
 ---@field level integer
----@field specialization {primary:string?, active:string, role:string, key:string}?
+---@field specialization {primary:Specialization?, active:Specialization, role:string, key:SpecializationKey}?
 ---@field professions {primary:any?, secondary:any?, fishing:any?, cooking:any?}?
 ---@field remix { unbound: integer }
 ns.Basic = ns:RegisterBroker("basic")
