@@ -1,9 +1,13 @@
 local _, ns = ...
-local API = ns.api
 local insert = table.insert
+
+---@class WarbandeerAPI
+local API = ns.api
 
 function API:GetCurrentCharacter() return ns.currentPlayer end
 
+---@class WarbandeerAPI
+---@field GetCharacterData fun(string?): Character
 function API:GetCharacterData(char)
   -- todo: return a copy so it is immutable
   return ns.db.characters[char or ns.currentPlayer]
@@ -18,6 +22,8 @@ function API:GetNumMaxLevel()
   return n
 end
 
+---@class WarbandeerAPI
+---@field GetAllCharacters fun(): Character[]
 function API:GetAllCharacters()
   local list = {}
   for _,c in pairs(ns.db.characters) do insert(list, c) end
