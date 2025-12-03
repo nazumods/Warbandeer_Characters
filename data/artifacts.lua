@@ -48,6 +48,12 @@ ns:registerCommand("dump", "artifact", function()
   for k,v in pairs(t.artifacts.hidden) do
     ns.Print(k, v and "\124cff00ff00Yes\124r" or "\124cffff0000No\124r")
   end
+  local _, _, _, a, g = GetAchievementCriteriaInfo(11152, 1)
+  print("Dungeon", a, g)
+  local _, _, _, a, g = GetAchievementCriteriaInfo(11153, 1)
+  print("WQ", a, g)
+  local _, _, _, a, g = GetAchievementCriteriaInfo(11154, 1)
+  print("Kills", a, g)
 end)
 
 data.DeathKnight = {
