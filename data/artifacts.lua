@@ -40,6 +40,15 @@ ns.Artifacts.fields = {
     end,
     event = "QUEST_TURNED_IN",
   },
+
+  classHall = {
+    data = {-288,-272,3,7,6,0,8,4,9,5,2,1},
+    get = function(self, toon)
+      local _, _, completed = GetAchievementCriteriaInfoByID(42565,108648 + self.data[toon.classId])
+      return completed
+    end,
+    event = "QUEST_TURNED_IN",
+  },
 }
 
 ns:registerCommand("dump", "artifact", function()
