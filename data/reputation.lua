@@ -33,6 +33,5 @@ ns.Reputation.fields = {
         }
       end)
     end,
-    -- event = "REPUTATION_UPDATE",
   },
 }
