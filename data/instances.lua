@@ -1,16 +1,21 @@
 local _, ns = ...
 
 ns:registerCommand("refresh", "locks", function(self)
-  self:refreshLocks()
+  self.brokers.instances:Update(self.currentData)
   self.Print("instance locks refreshed.")
 end)
 
+local difficulties = {}
+difficulties[15] = "Normal"
+difficulties[16] = "Heroic"
+difficulties[17] = "Mythic"
+
 ns:registerCommand("dump", "locks", function(self)
-  if ns.currentData.locks then
+  if ns.currentData.instances.locks then
     ns.Print("Instance locks:")
-    for id,i in pairs(ns.currentData.locks) do
+    for id,i in pairs(ns.currentData.instances.locks) do
       for d,l in pairs(i) do
-        print(l.name, id, d, l.progress.."/"..l.total)
+        print(l.name, id, difficulties[d], l.progress.."/"..l.total)
       end
     end
   else
