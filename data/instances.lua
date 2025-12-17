@@ -7,8 +7,8 @@ end)
 
 local difficulties = {}
 difficulties[15] = "Normal"
-difficulties[16] = "Heroic"
-difficulties[17] = "Mythic"
+difficulties[17] = "Heroic"
+difficulties[16] = "Mythic"
 
 ns:registerCommand("dump", "locks", function(self)
   if ns.currentData.instances.locks then

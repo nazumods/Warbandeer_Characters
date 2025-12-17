@@ -98,7 +98,7 @@ data.Mage = {
 data.Monk = {
   Brewmaster = { hidden = 43661, },
   Mistweaver = { hidden = 43662, },
-  Windwalker = { hidden = 43673, },
+  Windwalker = { hidden = 43663, },
 }
 
 data.Paladin = {
