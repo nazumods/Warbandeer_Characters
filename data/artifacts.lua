@@ -44,6 +44,8 @@ ns.Artifacts.fields = {
   classHall = {
     data = {-288,-272,3,7,6,0,8,4,9,5,2,1},
     get = function(self, toon)
+      -- Evokers don't have class hall
+      if toon.classId == 13 then return false end
       local _, _, completed = GetAchievementCriteriaInfoByID(42565,108648 + self.data[toon.classId])
       return completed
     end,
