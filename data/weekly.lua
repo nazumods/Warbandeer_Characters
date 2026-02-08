@@ -46,6 +46,23 @@ ns.Weekly.fields = {
       end
     end,
   },
+    preMidnight = {
+    ids = Set{87308,91795},
+    --maxLevel = true,
+    resetOn = ns.RESET_WEEKLY,
+    get = function(self)
+      return { 
+        eight = IsQuestFlaggedCompleted(87308),
+        three = IsQuestFlaggedCompleted(91795)
+      }
+    end,
+    reset = function() return { three = false, eight = false } end,
+    event = "QUEST_TURNED_IN",
+    eventHandler = function(self, _, questId)
+      if self.ids[questId] then self:set(self:get())
+      end
+    end,
+  },
   caches = {
     ids = Set{
       --84736, 84737, 84738, 84739, -- cache 1-4 Season 1 & 2
