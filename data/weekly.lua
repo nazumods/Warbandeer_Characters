@@ -19,9 +19,11 @@ local DMFQuests = {
   Tailoring = 25920,
 }
 
----@type Broker
+---@class WeeklyBroker: Broker
 ns.Weekly = ns:RegisterBroker("weeklies")
 ns.Weekly.fields = {
+  ---@class WeeklyBroker
+  ---@field DMF boolean
   DMF = {
     ids = ValueList(DMFQuests),
     resetOn = ns.RESET_SUNDAY,
@@ -31,6 +33,8 @@ ns.Weekly.fields = {
       end)
     end,
   },
+  ---@class WeeklyBroker
+  ---@field theater boolean
   theater = {
     ids = Set{83240},
     maxLevel = true,
@@ -46,7 +50,7 @@ ns.Weekly.fields = {
       end
     end,
   },
-    preMidnight = {
+  preMidnight = {
     ids = Set{87308,91795},
     --maxLevel = true,
     resetOn = ns.RESET_WEEKLY,
@@ -63,6 +67,8 @@ ns.Weekly.fields = {
       end
     end,
   },
+  ---@class WeeklyBroker
+  ---@field caches integer
   caches = {
     ids = Set{
       --84736, 84737, 84738, 84739, -- cache 1-4 Season 1 & 2
@@ -93,6 +99,8 @@ ns.Weekly.fields = {
       end
     end,
   },
+  ---@class WeeklyBroker
+  ---@field vault { rewards: integer, counts: integer, best: integer, bestN: integer }
   vault = {
     maxLevel = true,
     resetOn = ns.RESET_WEEKLY,
