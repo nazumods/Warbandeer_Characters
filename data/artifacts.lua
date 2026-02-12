@@ -21,7 +21,7 @@ ns.Artifacts.fields = {
   ---@field hidden { SpecializationKey: boolean }
   hidden = {
     get = function(_, toon)
-      return maps.map(data[toon.classKey], function(v)
+      return data[toon.classKey] and maps.map(data[toon.classKey], function(v)
         return IsQuestFlaggedCompleted(v.hidden)
       end)
     end,
@@ -32,7 +32,9 @@ ns.Artifacts.fields = {
   ---@field hiddenColors { wq: Progress, dungeon: Progress, kills: Progress }
   hiddenColors = {
     ids = {wq = 11153, dungeon = 11152, kills = 11154},
-    get = function(self)
+    get = function(self, toon)
+      -- Evokers don't have class hall
+      if toon.classId == 13 then return { goal = 0, progress = 0 } end
       return maps.map(self.ids, function(v)
         local _, _, _, a, g = GetAchievementCriteriaInfo(v, 1)
         return { goal = g, progress = a }
