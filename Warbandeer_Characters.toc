@@ -36,4 +36,6 @@ data/instances.lua
 data/equipment.lua
 data/artifacts.lua
 
+login.lua
+
 api.lua

@@ -27,8 +27,3 @@ function ns:refreshQueue()
   self.brokers[broker]:Update(self.currentData)
   self:delay(100, "refreshQueue")
 end
-
--- hook onLogin to update character data
-ns:hook("onLogin", function(self)
-  self:refresh()
-end)

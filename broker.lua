@@ -10,6 +10,17 @@ local time = DateAndTime.GetCurrentCalendarTime()
 local LAST_SUNDAY_RESET = GetServerTime() - ((time.weekday - 1) * 24 * 60 * 60) - (time.hour * 60 * 60) - (time.minute * 60) -- reset to sunday midnight
 LAST_SUNDAY_RESET = LAST_SUNDAY_RESET - (LAST_SUNDAY_RESET % 60) -- zero out seconds
 
+local eventListener = CreateFrame("Frame")
+local _delay = function(ms, fn)
+  local timer = 0
+  eventListener:SetScript("OnUpdate", function(_, elapsed)
+    timer = timer + (elapsed * 1000)
+    if timer < ms then return end
+    eventListener:SetScript("OnUpdate", nil)
+    fn()
+  end)
+end
+
 ---@class BrokerField
 ---@field get fun(self: BrokerField, toon: Character, currentValue: any?): any
 ---@field maxLevel boolean?
@@ -48,7 +59,7 @@ function Broker:Init(toon)
           field.eventHandler = function(self, ...)
             if field.eventFilter and not field.eventFilter(self, ...) then return end
             if field.eventDelay then
-              ns:delay(field.eventDelay, function()
+              _delay(field.eventDelay, function()
                 toon[broker][name] = field:get(toon)
               end)
             else
