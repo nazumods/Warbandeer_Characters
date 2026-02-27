@@ -72,12 +72,12 @@ ns:registerCommand("dump", "bank", function()
 end, "Dump bank expansion info")
 
 local gt = {
-  explorer = 642,
-  adventurer = 655,
-  veteran = 668,
-  champion = 681,
-  hero = 694,
-  mythic = 707,
+  explorer = 207,
+  adventurer = 220,
+  veteran = 233,
+  champion = 246,
+  hero = 259,
+  mythic = 272,
 }
 
 ns:registerCommand("dump", "gt", function()
